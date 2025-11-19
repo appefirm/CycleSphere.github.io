@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CycleSphere</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">Old Things Transformation ♻️</div>
+        <div class="links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Turn Waste into Wealth</h1>
+        <p>AI-Powered Upcycling Platform</p>
+        <button onclick="init()" class="btn">Start AI Camera</button>
+    </header>
+
+    <section class="container">
+        <div class="card">
+            <div id="webcam-container"></div>
+            <div id="label-container"></div>
+            <div id="result-area">
+                <h3>💡 Idea:</h3>
+                <p id="idea-text">Waiting for object detection...</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Global Waste</h3>
+                <img src="images/chart1.png" alt="Chart 1" class="chart-img">
+            </div>
+            <div class="card">
+                <h3>Recycling Impact</h3>
+                <img src="images/chart2.png" alt="Chart 2" class="chart-img">
+            </div>
+        </div>
+    </section>
+
+    <footer>&copy;Digital Humanities Project.</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+        // ⚠️在此处粘贴 Bryce 给你的 URL
+        const URL = "https://teachablemachine.withgoogle.com/models/YOUR_CODE_HERE/";
+        
+        let model, webcam, labelContainer, maxPredictions;
+
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+
+            const flip = true;
+            webcam = new tmImage.Webcam(300, 300, flip);
+            await webcam.setup();
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+
+            document.getElementById("webcam-container").replaceChildren(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+            labelContainer.innerHTML = "";
+            for (let i = 0; i < maxPredictions; i++) {
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+                
+                if (prediction[i].probability > 0.8) {
+                    const item = prediction[i].className;
+                    const ideas = {
+                        "Bottle": "Try making a DIY Lamp or Vase!",
+                        "Chair": "Refurbish with new fabric or paint.",
+                        "Box": "Create a storage organizer."
+                    };
+                    document.getElementById("idea-text").innerText = ideas[item] || "Object detected: " + item;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
