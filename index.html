@@ -219,7 +219,7 @@
                 <button onclick="closePlugin()" class="mr-4 p-2 hover:bg-gray-100 rounded-full transition">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <span class="font-semibold text-lg">Instruct-Pix2Pix 編輯器</span>
+                <span class="font-semibold text-lg">CycleSphere AI Studio</span>
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-sm text-gray-500">Running on Browser</span>
@@ -233,7 +233,7 @@
             
             <!-- Left Sidebar (Parameters) -->
             <div class="sidebar w-full md:w-80 p-6 flex-shrink-0">
-                <h2 class="text-xl font-bold mb-6 text-gray-800">參數設定</h2>
+                <h2 class="text-xl font-bold mb-6 text-gray-800">Settings</h2>
                 
                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded">
                     <div class="flex">
@@ -242,7 +242,7 @@
                         </div>
                         <div class="ml-3">
                             <p class="text-sm text-yellow-700">
-                                未偵測到 GPU，使用雲端 API 加速。
+                                No GPU detected. Using Cloud API acceleration.
                             </p>
                         </div>
                     </div>
@@ -269,9 +269,9 @@
                 <hr class="my-6 border-gray-300">
                 
                 <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">關於 CycleSphere</h3>
+                    <h3 class="font-semibold text-gray-700">About CycleSphere</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">
-                        此插件使用 Instruct-Pix2Pix 模型邏輯，允許用戶透過自然語言指令修改回收物品圖像，激發再利用創意。
+                        This AI tool allows you to visualize how to upcycle waste items into valuable products. Simply upload a photo and use natural language to transform it.
                     </p>
                 </div>
             </div>
@@ -284,22 +284,22 @@
                     <div class="mb-10 text-center md:text-left">
                         <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
                             <span class="text-4xl">🎨</span>
-                            <h1 class="text-4xl font-bold text-gray-800">Instruct-Pix2Pix 圖像編輯助手</h1>
+                            <h1 class="text-4xl font-bold text-gray-800">AI Upcycling Assistant</h1>
                         </div>
-                        <p class="text-gray-600 mt-2">上傳一張回收物圖片，並給予指令來修改它 (例如: '把這個塑膠瓶變成精美的花瓶' 或 '讓畫面看起來像油畫')。</p>
+                        <p class="text-gray-600 mt-2">Upload a photo of a waste item and give instructions to transform it (e.g., 'Turn this plastic bottle into a vase' or 'Make it look like a DIY lamp').</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         
                         <!-- Column 1: Input -->
                         <div class="space-y-4">
-                            <h2 class="text-2xl font-bold text-gray-800">1. 輸入來源</h2>
-                            <p class="text-sm text-gray-500 mb-2">選擇一張圖片或開啟相機</p>
+                            <h2 class="text-2xl font-bold text-gray-800">1. Input Source</h2>
+                            <p class="text-sm text-gray-500 mb-2">Choose an image or open camera</p>
                             
                             <!-- Tabs -->
                             <div class="flex space-x-2 mb-4 bg-gray-100 p-1 rounded-lg inline-flex">
-                                <button onclick="switchTab('upload')" id="tab-upload" class="px-4 py-2 rounded-md text-sm font-medium bg-white shadow text-gray-800 transition">上傳圖片</button>
-                                <button onclick="switchTab('camera')" id="tab-camera" class="px-4 py-2 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition">開啟相機</button>
+                                <button onclick="switchTab('upload')" id="tab-upload" class="px-4 py-2 rounded-md text-sm font-medium bg-white shadow text-gray-800 transition">Upload Image</button>
+                                <button onclick="switchTab('camera')" id="tab-camera" class="px-4 py-2 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition">Open Camera</button>
                             </div>
 
                             <!-- Upload Box -->
@@ -323,39 +323,39 @@
                                         <i class="fas fa-camera text-xl"></i>
                                     </button>
                                 </div>
-                                <p class="text-xs text-center text-gray-500 mt-2">點擊相機圖標拍攝照片</p>
+                                <p class="text-xs text-center text-gray-500 mt-2">Tap camera icon to capture</p>
                             </div>
 
                         </div>
 
                         <!-- Column 2: Prompt & Output -->
                         <div class="space-y-4">
-                            <h2 class="text-2xl font-bold text-gray-800">2. 編輯指令</h2>
+                            <h2 class="text-2xl font-bold text-gray-800">2. Edit Instructions</h2>
                             
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">輸入編輯指令 (英文效果最佳)</label>
-                                <textarea id="prompt-input" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" placeholder="例如: make it look like a painting, turn the bottle into a sci-fi lamp..."></textarea>
+                                <label class="block text-sm font-medium text-gray-700">Enter instructions (English works best)</label>
+                                <textarea id="prompt-input" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" placeholder="e.g., turn the bottle into a sci-fi lamp, make it look like a flower pot..."></textarea>
                             </div>
 
                             <!-- Advanced Dropdown Mockup -->
                             <div class="border border-gray-200 rounded-lg">
                                 <button class="w-full px-4 py-3 text-left text-sm font-medium text-gray-700 flex justify-between items-center">
-                                    進階設定
+                                    Advanced Settings
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
 
                             <button onclick="generateImage()" id="generate-btn" class="w-full bg-white border border-gray-300 hover:border-green-500 hover:text-green-600 text-gray-700 font-semibold py-3 px-4 rounded-lg shadow-sm transition flex items-center justify-center gap-2">
-                                <span>開始生成</span>
+                                <span>Generate</span>
                                 <i class="fas fa-magic text-yellow-400"></i>
                             </button>
 
                             <!-- Output Area -->
                             <div id="output-area" class="hidden mt-6 border rounded-lg p-4 bg-gray-50">
-                                <h3 class="font-semibold text-gray-700 mb-2">生成結果:</h3>
+                                <h3 class="font-semibold text-gray-700 mb-2">Result:</h3>
                                 <div id="loading-spinner" class="hidden flex flex-col items-center justify-center py-8">
                                     <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-green-600"></div>
-                                    <p class="text-sm text-gray-500 mt-3">AI 正在重新繪製...</p>
+                                    <p class="text-sm text-gray-500 mt-3">AI is reimagining...</p>
                                 </div>
                                 <img id="result-image" class="w-full rounded-lg shadow-md hidden">
                                 <div id="error-message" class="hidden text-red-500 text-sm mt-2 p-2 bg-red-50 rounded"></div>
@@ -440,7 +440,7 @@
                 video.srcObject = videoStream;
             } catch (err) {
                 console.error("Error accessing camera", err);
-                alert("無法開啟相機，請檢查權限。");
+                alert("Unable to access camera. Please check permissions.");
             }
         }
 
@@ -483,11 +483,11 @@
 
             // Basic Validation
             if (!currentImageBase64) {
-                alert("請先上傳或拍攝一張圖片！");
+                alert("Please upload or capture an image first!");
                 return;
             }
             if (!prompt) {
-                alert("請輸入編輯指令！");
+                alert("Please enter instructions!");
                 return;
             }
 
@@ -540,7 +540,7 @@
 
             } catch (error) {
                 console.error(error);
-                errorMsg.innerText = "生成失敗: " + error.message;
+                errorMsg.innerText = "Generation failed: " + error.message;
                 errorMsg.classList.remove('hidden');
             } finally {
                 loading.classList.add('hidden');
